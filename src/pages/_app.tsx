@@ -1,7 +1,10 @@
+import { useRouter } from "next/router";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps }: { Component: any; pageProps: any }) {
+  const { locale } = useRouter();
+
   return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default App;
