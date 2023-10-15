@@ -20,7 +20,7 @@ export const logout = async () => {
     return response;
 };
 
-
+// TODO implement get status in the backend
 export const status = async () => {
     return await request<StatusRes>('GET', '/authentication/status');
 };

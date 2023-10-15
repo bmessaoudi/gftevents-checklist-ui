@@ -4,9 +4,10 @@ import GlobalContext, { GlobalContextState, GlobalContextStateOptional, initialG
 import { useEffect, useState } from 'react';
 import { SWRConfig, mutate } from 'swr';
 import { useGetUserMy } from '@/api/user';
-import { fetcher } from '@/utils';
+import { checkAuthentication, fetcher } from '@/utils';
 import Router from '@/utils/context/router';
 import SplashScreen from '@/components/layouts/SplashScreen';
+import { useGetStatus } from '@/api/authentication';
 
 function App({ Component, pageProps }: { Component: any; pageProps: any }) {
     const [globalContext, setGlobalContext] = useState<GlobalContextState>({ ...initialGlobalContextState });
@@ -16,6 +17,12 @@ function App({ Component, pageProps }: { Component: any; pageProps: any }) {
     function updateGlobalContext(newState: GlobalContextStateOptional) {
         setGlobalContext(oldState => ({ ...oldState, ...newState }));
     }
+
+    useEffect(() => {
+        checkAuthentication()
+            .then(data => updateGlobalContext(data))
+            .catch(err => void 0);
+    }, []);
 
     useEffect(() => {
         if (!globalContext.authenticated) {
@@ -48,6 +55,9 @@ function App({ Component, pageProps }: { Component: any; pageProps: any }) {
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
+    useGetStatus();
+    useGetUserMy();
+
     return <>{children}</>;
 }
 

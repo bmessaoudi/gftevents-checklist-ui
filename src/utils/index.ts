@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, CancelToken } from 'axios';
 import Router from 'next/router';
 import { Redirect, StatusRes } from '@/types';
+import envs from './envs';
 
 export function getToken() {
     return localStorage.getItem('token');
@@ -46,7 +47,7 @@ function generateRequest({ host }: { host: string }) {
     };
 }
 
-export const request = generateRequest({ host: process.env.NEXT_PUBLIC_API_HOST as string });
+export const request = generateRequest({ host: envs.API_HOST });
 
 export async function fetcher(url: string) {
     return await request('GET', url);
