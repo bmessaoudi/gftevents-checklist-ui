@@ -6,7 +6,7 @@ import { SWRConfig, mutate } from 'swr';
 import { useGetUserMy } from '@/api/user';
 import { checkAuthentication, fetcher } from '@/utils';
 import Router from '@/utils/context/router';
-import SplashScreen from '@/components/layouts/SplashScreen';
+import SplashScreen from '@/components/Layout/SplashScreen';
 import { useGetStatus } from '@/api/authentication';
 
 function App({ Component, pageProps }: { Component: any; pageProps: any }) {

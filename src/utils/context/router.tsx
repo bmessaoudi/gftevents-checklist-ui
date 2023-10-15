@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useGetStatus } from '@/api/authentication';
 import { useGetUserMy } from '@/api/user';
 
-import SplashScreen from '@/components/layouts/SplashScreen';
+import SplashScreen from '@/components/Layout/SplashScreen';
 
 import Routes from '@/utils/constants/routes';
 import { PageOptions } from '@/utils/routing';
